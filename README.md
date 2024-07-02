@@ -6,7 +6,7 @@ when working with `Ansible` there might come a time where you have to respond to
 
 Assuming that you have a main script that prepares a docker container to do the workload, how do you tell `Ansible` to execute some commands and answer with a secret that is not hardcoded?
 
-Note: ansible needs SSH access to the target machine. You can find out how to configure SSH access in the docker container at [https://github.com/Frunza/configure-docker-container-with-ssh-access](https://github.com/Frunza/configure-docker-container-with-ssh-access)
+Note: `Ansible` needs SSH access to the target machine. You can find out how to configure SSH access in the docker container at [https://github.com/Frunza/configure-docker-container-with-ssh-access](https://github.com/Frunza/configure-docker-container-with-ssh-access)
 
 ## Prerequisites
 
@@ -61,7 +61,7 @@ You can also add a second task to figure out what happened by using:
 
 ## Usage
 
-Navigate to the root of the git repository and run the following command:
+Navigate to the root of the repository and run the following command:
 ```sh
 sh run.sh 
 ```
@@ -69,6 +69,6 @@ sh run.sh
 The following happens:
 1) the first command builds the docker image, passing the private key value as an argument and tagging it as *respondansible*
 2) the docker image sets up the SSH access by copying the value of the `SSH_PRIVATE_KEY` argument to the standard location for SSH keys
-3) the second command uses docker-compose to create the container with the `RESPONSE` environment variable set up and run the container. The container runs the `master.yml` ansible playbook, which asks a question, responds to it and prints the output.
+3) the second command uses docker-compose to create the container with the `RESPONSE` environment variable set up and run the container. The container runs the `master.yml` `Ansible` playbook, which asks a question, responds to it and prints the output.
 
 Note: if you want to test this, consider changing the `hosts` in the `Ansible` playbook to `local`.
