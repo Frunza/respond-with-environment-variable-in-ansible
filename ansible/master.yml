@@ -1,0 +1,14 @@
+- name: master playlist
+  hosts: hosts
+  gather_facts: true
+  become: yes
+  tasks:
+    - name: Ask for password and respond
+      expect:
+        command: /bin/sh -c 'read -p "What is the password? " password; echo $password'
+        responses:
+          (?i).*What is the password?.*: "{{ lookup('env', 'RESPONSE') }}"
+      register: passwordResponse  # Register the output of the command to a variable
+    - name: Print command output
+      debug:
+        msg: "{{ passwordResponse.stdout }}"
